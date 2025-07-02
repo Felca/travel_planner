@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     remotePatterns: [{
-      hostname: '12nwvhlsfk.ufs.sh' // from uploadthing website check the image url
+      hostname: 'i9s7ewn30w.ufs.sh' // from uploadthing website check the image url
     }]
   }
 };
