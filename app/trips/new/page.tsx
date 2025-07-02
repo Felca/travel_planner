@@ -53,6 +53,10 @@ export default function NewTrip() {
             <form
               className="grid gap-4"
               action={(formData: FormData) => {
+                if(imageUrl) {
+                  formData.append("imageurl", imageUrl);
+                }
+
                 startTransition(() => {
                   createTrip(formData);
                 });
