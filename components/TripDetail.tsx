@@ -157,9 +157,33 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
 
           {/* map Tab */}
           <TabsContent value="map" className="space-y-6">
-            <div></div>
+            <div className="h-72 rounded-lg overflow-hidden shadow">
+              <Map itineraries={trip.locations}/>
+            </div>
+            {trip.locations.length > 0 ? (
+              <div className="h-72 rounded-lg overflow-hidden shadow mt-5">
+                <Map itineraries={trip.locations}></Map>
+              </div>
+            ) : (
+              <div className="text-center p-6 mt-4 bg-accent">
+                <p>Add locations to see the maps</p>
+                <Link href={`/trips/${trip.id}/itinerary/new`}>
+                  <Button className="m-3">
+                    <Plus /> Add Location
+                  </Button>
+                </Link>
+              </div>
+            )}
           </TabsContent>
         </Tabs>
+        
+        <div className="text-center">
+          <Link href={`/trips`}>
+            <Button>
+              Back to Trips
+            </Button> 
+          </Link>
+        </div>
       </div>
     </div>
   );
