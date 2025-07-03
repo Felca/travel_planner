@@ -6,9 +6,10 @@ import { Calendar, MapPin, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Map from "@/components/ui/map";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { useParams } from "next/navigation";
 
 export type TripWithLocation = Trip & {
   locations: Location[];
@@ -32,8 +33,6 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
             className="object-cover"
             fill
             priority
-            width={300}
-            height={100}
           />
         </div>
       )}
@@ -80,7 +79,7 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
 
           {/* Overview Tab */}
           <TabsContent value="overview" className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid gap-6">
               <div>
                 <h2 className="text-2xl font-semibold mb-4">Trip Summary</h2>
                 <div className="flex items-start">
@@ -105,25 +104,27 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
                     <p className="font-medium text-gray-700">Destinations</p>
                     <p className="text-gray-500">
                       {trip.locations.length}{" "}
-                      {trip.locations.length == 1 ? "location" : "Locations"}
+                      {trip.locations.length <= 1 ? "location" : "Locations"}
                     </p>
                   </div>
                 </div>
 
-                <div className="h-72 rounded-lg overflow-hidden shadow mt-5">
-                  <Map itineraries={trip.locations}></Map>
-                  {trip.locations.length === 0 && (
-                    <div className="text-center p-4">
-                      <p>Add locations to see the maps</p>
-                      <Link href={`/trips/${trip.id}/itinerary/new`}>
-                        <Button>
-                          <Plus></Plus>
-                          Add Location
-                        </Button>
-                      </Link>
-                    </div>
-                  )}
-                </div>
+                {trip.locations.length > 0 ? (
+                  <div className="h-72 rounded-lg overflow-hidden shadow mt-5">
+                    <Map itineraries={trip.locations}></Map>
+                  </div>
+                ) : (
+                  <div className="text-center p-6 mt-4 bg-accent">
+                    <p>Add locations to see the maps</p>
+                    <Link href={`/trips/${trip.id}/itinerary/new`}>
+                      <Button className="m-3">
+                        <Plus></Plus>
+                        Add Location
+                      </Button>
+                    </Link>
+                  </div>
+                )}
+
                 <div className="mt-5">
                   <p className="font-medium text-gray-700">description:</p>
                   <p className="text-gray-500">{trip.description}</p>
@@ -131,19 +132,15 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
               </div>
             </div>
           </TabsContent>
-          
+
           {/* itinerary Tab */}
           <TabsContent value="itinerary" className="space-y-6">
-            <div>
-
-            </div>
+            <div></div>
           </TabsContent>
 
           {/* map Tab */}
           <TabsContent value="map" className="space-y-6">
-            <div>
-
-            </div>
+            <div></div>
           </TabsContent>
         </Tabs>
       </div>
