@@ -9,6 +9,7 @@ import Map from "@/components/ui/map";
 import { useState } from "react";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import SortableItinerary from "./SortableItinerary";
 
 export type TripWithLocation = Trip & {
   locations: Location[];
@@ -32,8 +33,6 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
             className="object-cover"
             fill
             priority
-            width={300}
-            height={100}
           />
         </div>
       )}
@@ -134,9 +133,22 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
           
           {/* itinerary Tab */}
           <TabsContent value="itinerary" className="space-y-6">
-            <div>
-
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-semibold">Full Itinerary</h2>
             </div>
+            {trip.locations.length === 0 ? (
+              <div className="text-center p-4">
+                <p>Add locations to see the maps</p>
+                <Link href={`/trips/${trip.id}/itinerary/new`}>
+                  <Button>
+                    <Plus></Plus>
+                    Add Location
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <SortableItinerary locations={trip.locations} tripId={trip.id}/>
+            )}
           </TabsContent>
 
           {/* map Tab */}

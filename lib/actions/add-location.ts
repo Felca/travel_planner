@@ -15,11 +15,11 @@ async function geocodeAddress(address: string){
 
     // GraphHopper returns results in the 'hits' array
     if (data.hits && data.hits.length > 0) {
-      const firstResult = data.hits[0];
-      const { lat, lng } = firstResult.point;
-      return { lat, lng };
+        const firstResult = data.hits[0];
+        const { lat, lng } = firstResult.point;
+        return { lat, lng };
     } else {
-      throw new Error(`No geocoding results found for address: ${address}`);
+        throw new Error(`No geocoding results found for address: ${address}`);
     }
 
 }
