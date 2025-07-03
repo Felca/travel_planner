@@ -6,11 +6,10 @@ import { Calendar, MapPin, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Map from "@/components/ui/map";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import SortableItinerary from "./SortableItinerary";
-import { useParams } from "next/navigation";
 
 
 export type TripWithLocation = Trip & {
