@@ -20,27 +20,6 @@ export default function NewTrip() {
 
   return (
     <>
-      <div>
-        <Card>
-          <CardHeader>
-            <CardTitle>Title</CardTitle>
-            <CardDescription>Description</CardDescription>
-            <CardAction>Action</CardAction>
-          </CardHeader>
-          <CardContent>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Quibusdam aliquam, quae laudantium corrupti animi fugiat dolor
-              aliquid delectus modi dolorum accusantium libero ipsum, sed iure
-              praesentium rerum? Eveniet, doloremque veniam.
-            </p>
-          </CardContent>
-          <CardFooter>
-            <p>Footer</p>
-          </CardFooter>
-        </Card>
-      </div>
-
       {/* to use actions --> use transition hook */}
       {/* to keep track of the state */}
 
