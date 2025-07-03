@@ -133,7 +133,7 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
           </TabsContent>
           
           {/* itinerary Tab */}
-          <TabsContent value="itenerary" className="space-y-6">
+          <TabsContent value="itinerary" className="space-y-6">
             <div>
 
             </div>
@@ -142,7 +142,7 @@ export default function TripDetailClient({ trip }: TripDetailClientProps) {
           {/* map Tab */}
           <TabsContent value="map" className="space-y-6">
             <div>
-                
+
             </div>
           </TabsContent>
         </Tabs>
