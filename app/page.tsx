@@ -1,103 +1,84 @@
+import { auth } from "@/auth";
+import AuthButton from "@/components/AuthButton";
+import { MapIcon } from "lucide-react";
 import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+export default async function Home() {
+  const session = await auth();
+  const isLoggedIn = !!session?.user;
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <>
+    <div className="min-h-screen flex flex-col">
+      {/* hero section */}
+      <div className="bg-gradient-to-b from-white to-blue-300 py-20 md:py-30">
+        <div className="flex flex-col px-4 text-center items-center m-4">
+          <h1 className="font-extrabold md:text-6xl text-4xl mb-4">
+            Plan your perfect trip, every time
+          </h1>
+          <p>
+            Create itineraries, organize destinations, and share your travel
+            plans all in one place
+          </p>
+
+          <AuthButton isLoggedIn={isLoggedIn}>
+            {isLoggedIn ? "Check it out" : "Log in"}
+          </AuthButton>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* features */}
+      <div className="flex-grow py-16 md:py-24 bg-white">
+        <h2 className="text-3xl font-bold text-center mb-12">
+          Plan with confidence
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* col-1 */}
+          <div className="p-6 rounded-lg border border-gray-100 shadow-sm bg-white">
+            <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+              <Image src={'globe-stand-svgrepo-com.svg'} alt={"Interactive maps"} width={30} height={30}></Image>
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Interactive Maps</h3>
+            <p className="text-gray-600">Visualize your trip with interactive maps. See your entire itinerary at a glance.</p>
+          </div>
+
+          {/* col2 */}
+          <div className="p-6 rounded-lg border border-gray-100 shadow-sm bg-white">
+            <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+              <Image src={'/day-sunny-svgrepo-com.svg'} alt={"Day-by-day itineraries"} width={30} height={30}></Image>
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Day-by-Day Itineraries</h3>
+            <p className="text-gray-600">Organize your trip day by day. Never miss a beat with structured planning.</p>
+          </div>
+
+          {/* col3 */}
+          <div className="p-6 rounded-lg border border-gray-100 shadow-sm bg-white">
+            <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+              <Image src={'drag-handle-vertical-1-svgrepo-com.svg'} alt={"Drag&Drop"} width={30} height={30}></Image>
+            </div>
+            <h3 className="text-xl font-semibold mb-2">Drag & Drop Planning</h3>
+            <p className="text-gray-600">Easily rearrange your itinerary with simple drag and drop functionality.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* footer */}
+      <div className="w-full bg-gradient-to-b from-white to-blue-300 py-10 md:py-10 md:px-10">
+        <div className="mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm">&copy; 2025 ZenRoute. All rights reserved.</p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <a href="/" className="text-sm hover:underline">Privacy Policy</a>
+            <a href="/" className="text-sm hover:underline">Terms of Service</a>
+            <a href="/" className="text-sm hover:underline">Contact</a>
+          </div>
+          <div className="mt-4 md:mt-0 text-center md:text-right">
+            <p className="text-sm font-medium">Creators:</p>
+            <p className="text-sm">@Scholastica Celine</p>
+            <p className="text-sm">@Felicia Josephine</p>
+          </div>
+        </div>
+      </div>
     </div>
+    </>
   );
 }

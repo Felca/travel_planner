@@ -8,12 +8,13 @@ import { Session } from "next-auth";
 export default function Navbar({session}: {session: Session | null}){
 
     return <nav className="bg-white shadow-md py-4 border-gray-200">
-        <div className="container mx-auto flex justify-between items-center px-6 lg:px-8">
-            <Link href={"/"} className="flex items-center">
-            <Image src={'/window.svg'} alt="logo" width={50} height={50}></Image>
-            <span className="text-2xl font-bold text-gray-800">Travel Planner</span>
+        <div className="flex justify-between px-6">
+            <Link href={"/"} className="flex items-end">
+                <Image src={'plane-svgrepo-com.svg'} alt="logo" width={50} height={50}></Image>
+                <span className="text-2xl font-bold text-gray-800">ZenRoute</span>
             </Link>
 
+            <div className="flex justify-evenly items-center space-x-4">
             {/* if session doesnt exist then dont show the links and signout button */}
             {session ? (
                 <>
@@ -33,6 +34,7 @@ export default function Navbar({session}: {session: Session | null}){
                     Sign In
                 </button>
             )}
+            </div>
             
         </div>
     </nav>
