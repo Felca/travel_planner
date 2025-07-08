@@ -2,10 +2,10 @@
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
+  // CardAction,
   CardContent,
-  CardDescription,
-  CardFooter,
+  // CardDescription,
+  // CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";

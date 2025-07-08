@@ -5,14 +5,12 @@ import { login } from "@/lib/auth-actions";
 
 interface AuthButtonProps {
   isLoggedIn: boolean;
-  className?: string;
   children?: React.ReactNode;
 }
 
 export default function AuthButton({
   isLoggedIn,
   children,
-  className
 }: AuthButtonProps) {
   const router = useRouter();
 

@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import AuthButton from "@/components/AuthButton";
-import { MapIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home() {
   const session = await auth();
@@ -67,9 +67,9 @@ export default async function Home() {
         <div className="mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm">&copy; 2025 ZenRoute. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="/" className="text-sm hover:underline">Privacy Policy</a>
-            <a href="/" className="text-sm hover:underline">Terms of Service</a>
-            <a href="/" className="text-sm hover:underline">Contact</a>
+            <Link href="/" className="text-sm hover:underline">Privacy Policy</Link>
+            <Link href="/" className="text-sm hover:underline">Terms of Service</Link>
+            <Link href="/" className="text-sm hover:underline">Contact</Link>
           </div>
           <div className="mt-4 md:mt-0 text-center md:text-right">
             <p className="text-sm font-medium">Creators:</p>
