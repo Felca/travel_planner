@@ -4,7 +4,12 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from '@/lib/prisma' //prisma client
 
 export const {auth, handlers, signIn, signOut} = NextAuth({
-    providers: [GitHub],
+    providers: [
+        GitHub({
+            clientId:process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+        })
+    ],
     // only when using prisma
     adapter: PrismaAdapter(prisma)
 })
