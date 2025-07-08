@@ -10,6 +10,7 @@ export const {auth, handlers, signIn, signOut} = NextAuth({
             clientSecret: process.env.GITHUB_CLIENT_SECRET!,
         })
     ],
+    debug: true,
     // only when using prisma
     adapter: PrismaAdapter(prisma)
 })
